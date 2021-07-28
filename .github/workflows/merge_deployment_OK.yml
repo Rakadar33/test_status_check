@@ -1,4 +1,4 @@
-name: Deployment after PR is closed : if OK, merge is possible 
+name: Deployment after PR is closed is OK so merge is possible 
 
 on:
  pull_request:
