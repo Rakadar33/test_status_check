@@ -1,4 +1,4 @@
-name: Deployment after PR is closed : KO example, merge is not possible 
+name: Deployment after PR is closed is KO so merge is not possible 
 
 on:
  pull_request:
