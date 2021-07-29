@@ -1,18 +1,17 @@
-name: Deployment after PR is closed is OK so merge is possible 
+name: Deployment after PR is closed is OK so merge is possible
 
 on:
- pull_request:
-   # types: [closed]
-   types: [open]
-   
+  pull_request:
+    # types: [closed]
+    types: [opened]
+
 jobs:
- build:
+  build:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
-     # Runs a single command using the runners shell        
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
+      # Runs a single command using the runners shell
+      - name: Send greeting
+        run: echo "Hello ${{ github.event.inputs.name }}"
