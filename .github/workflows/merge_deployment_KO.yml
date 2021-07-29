@@ -1,12 +1,13 @@
-name: Deployment after PR is closed is OK so merge is possible
+name: Deployment after PR is closed is KO so merge is not possible
 
 on:
+  #[push, pull_request]:   #on: [push, pull_request]
   pull_request:
     # types: [closed]
     types: [opened]
 
 jobs:
-  build:
+  test_KO:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
@@ -18,3 +19,45 @@ jobs:
 
       - name: Exit with error
         run: exit 1
+###   #----------------------------
+###   # PR : CI job
+###   #----------------------------
+###   on:
+###     pull_request:
+###       branches-ignore:
+###         - master
+###
+###   jobs:
+###     CI:
+###       #if: github.event.action == 'closed' && github.event.pull_request.merged == true
+###       runs-on: ubuntu-latest
+###
+###       # Steps represent a sequence of tasks that will be executed as part of the job
+###       steps:
+###         - name: CI job
+###           run: echo "Continuous Integration"
+###
+###         - name: Send greeting KO
+###           run: echo "Hello KOOOOO ${{ github.event.inputs.name }}"
+###
+###
+###   #----------------------------
+###   # Review accepted : CD job
+###   #----------------------------
+###   on:
+###     pull_request_review:
+###       types: [submitted]
+###       branches-ignore:
+###         - master
+###
+###   jobs:
+###     CD:
+###       if: github.event.review.state == 'approved'
+###       runs-on: ubuntu-latest
+###
+###       steps:
+###         - name: CD job
+###           run: echo "Continuous Deployment"
+###
+###         - name: Send greeting KO
+###           run: echo "Hello KOOOOO ${{ github.event.inputs.name }}"
