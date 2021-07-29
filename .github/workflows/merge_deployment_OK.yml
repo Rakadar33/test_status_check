@@ -5,8 +5,6 @@ on:
     # types: [closed]
     types: [opened]
 
-on push:
-
 jobs:
   test_OK:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
